@@ -1,0 +1,16 @@
+body {
+  background:#EEE;
+  font-size:24pt;
+}
+
+p {
+  margin: 0;
+  margin-bottom: 0.4em;
+}
+
+.lang {
+  border:1px #AAA;
+  border-radius: 8px;
+  background: #CCC;
+  padding: 4px;
+}
