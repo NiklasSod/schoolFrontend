@@ -1,0 +1,93 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  background-color: rgb(206, 202, 202);
+  color: rgb(26, 25, 25);
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+}
+
+.card-1 {
+  background-color: #555;
+  width: 300px;
+  border: 5px solid blue;
+  padding: 2px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card-2 {
+  border: 1px solid black;
+  padding:1em;
+}
+
+.card-3 {
+  border: 3px dashed black;
+  padding:1em;
+  margin-top: 1em;
+}
+
+.card-3 a {
+  text-decoration: underline;
+  color: red;
+}
+
+.card-3 a:hover {
+  color: green;
+}
+
+.card-3 li:nth-child(odd) {
+  background-color: rgb(128, 121, 169);
+}
+
+.link {
+  margin-top: 1rem;
+  margin-right: 1rem;
+  display: inline-block;
+}
+
+.btn {
+  display: inline-block;
+  border: 2px solid rgb(159, 159, 168);
+  border-radius: 10px;
+  padding: 2px;
+  cursor: pointer;
+  transition: all 650ms ease;
+}
+
+.btn-primary {
+  background-color: rgb(219, 18, 18);
+  color: rgb(122, 187, 120);
+}
+
+.btn-primary:hover {
+  color: blue;
+  background-color: white;
+}
+
+.btn-primary:focus {
+  color: rgb(11, 11, 12);
+  background-color: rgb(154, 17, 60);
+}
+
+.btn-secondary {
+  background-color: rgb(122, 158, 32);
+  color: rgb(21, 39, 103);
+}
+
+.btn-secondary:hover {
+  color: blue;
+  background-color: rgb(239, 20, 173);
+}

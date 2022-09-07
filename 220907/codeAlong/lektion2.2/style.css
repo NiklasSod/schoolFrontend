@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.top {
+  background-color: rgb(195, 223, 136);
+}
+
+nav {
+  z-index: 1000;
+  background-color: aqua;
+  padding: 1rem;
+  position: sticky;
+  top:0px;
+}
+
+.container {
+  height: 140vh;
+  width: 80%;
+  margin: auto;
+}
+
+.square {
+  border: 2px solid black;
+  height: 20em;
+  width: 20em;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.ball {
+  width: 90%;
+  height: 90%;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
