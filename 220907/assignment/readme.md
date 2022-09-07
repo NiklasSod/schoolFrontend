@@ -1,0 +1,5 @@
+Du ska i denna laborationsuppgift göra följande:
+
+- I denna Labb ska du skapa ett inloggningsformulär som alltid ligger centrerat på sidan både vertikalt och horisontellt oavsett skärmstorlek. 
+- För att logga in i detta fall räcker det med en email och ett lösenord. 
+- Du ska använda HTML och CSS för att lösa uppgiften och formuläret behöver inte ha någon funktionalitet, tänk på att använda rätt typ av input för det användaren ska skriva in.
