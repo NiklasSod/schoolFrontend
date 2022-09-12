@@ -1,0 +1,32 @@
+.grid-wrapper div {
+  background-color: #cecece;
+  padding: 1rem;
+}
+
+.grid-wrapper div:nth-child(odd) {
+  background-color: #eee;
+}
+
+.grid-wrapper {
+  display: grid;
+  /* grid-template-columns: repeat(3, 1fr); */
+  grid-template-columns: 65% 35%;
+  gap: 1rem;
+  /* grid-auto-rows: minmax(200px, auto); */
+}
+
+.box {
+  border: 1px solid black;
+  padding: 1rem;
+  width: 80%;
+  margin: auto;
+}
+
+.grid-2 {
+  border: 1px solid red;
+  width: 90%;
+  height: 500px;
+  margin: 3rem auto;
+  display: grid;
+  place-items: center;
+}
