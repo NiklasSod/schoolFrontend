@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Form</title>
+  <link rel="stylesheet" href="./responsiveForm.css">
+  <link rel="stylesheet" href="./nav.css">
+</head>
+<body>
+  <!-- navbar -->
+  <nav class="nav">
+    <ul class="nav__items">
+      <li class="menu-btn">☰</li>
+      <li class="nav__item"><a href="#">Home</a></li>
+      <li class="nav__item"><a href="#">Shop</a></li>
+      <li class="nav__item"><a href="#">About us</a></li>
+      <li class="nav__item active"><a href="#">Contact us</a></li>
+    </ul>
+    <div class="signIn">
+      <p><a class="signIn__item" href="#">Login</a></p>
+      <p><a class="signIn__item" href="#">Register</a></p>
+    </div>
+  </nav>
+  <div class="container">
+    <!-- register form -->
+    <form action="#" class="form">
+      <div class="form-row">
+        <label for="firstName">First name: </label>
+        <input type="text" id="firstName" name="firstName" placeholder="Enter first name...">
+      </div>
+      <div class="form-row">
+        <label for="lastName">Last name: </label>
+        <input type="text" id="lastName" name="lastName" placeholder="Enter last name...">
+      </div>
+      <div class="form-row">
+        <label for="email">Email: </label>
+        <input type="email" id="email" name="email" placeholder="Enter email...">
+      </div>
+      <div class="form-row">
+        <label for="password">Password: </label>
+        <input type="password" id="password" name="password" placeholder="Enter password...">
+      </div>
+      <input type="submit" value="Submit" class="btn btn-primary">
+    </form>
+  </div>
+</body>
+</html>
