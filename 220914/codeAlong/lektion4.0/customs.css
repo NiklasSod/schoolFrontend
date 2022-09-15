@@ -1,0 +1,15 @@
+:root {
+  --bs-primary-rgb: rgb(50, 251, 0);
+}
+
+.btn-primary {
+  background-color: rgb(4, 38, 55);
+  color: #fff;
+  border-color: rgb(236, 33, 33);
+}
+
+.carousel-item {
+  /* width: 80%; */
+  height: 600px;
+  /* margin: auto; */
+}
