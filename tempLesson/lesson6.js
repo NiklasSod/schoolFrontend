@@ -30,7 +30,7 @@ const add2 = (number1, number2) => {
 const number1 = 4;
 const number2 = "7";
 
-console.log(add2(number1, number2)); // svar 47, 7 görs om till sträng
+console.log(add2(number1, number2)); // svar 47, 4 görs om till sträng
 
 const add3 = (number1, number2) => {
   if(typeof(number1) === 'number' && typeof(number2) === 'number'){
