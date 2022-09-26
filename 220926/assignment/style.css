@@ -38,3 +38,7 @@ button {
   padding: 0.4em;
   margin: 0.1em;
 }
+
+#link {
+  display: block;
+}
