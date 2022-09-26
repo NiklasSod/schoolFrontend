@@ -42,3 +42,13 @@ button {
 #link {
   display: block;
 }
+
+.form__row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.2em;
+}
+
+.form__row > input {
+  width: 150px;
+}
