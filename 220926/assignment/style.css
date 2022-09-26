@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width:80%;
+  margin: 1em auto;
+}
+
+#refreshBtn {
+  position: absolute;
+  right: 10%;
+  top: 1em;
+  background-color: rgb(255, 0, 0);
+  color: rgb(255, 255, 255);
+  padding: 0.3em;
+  border-radius: 1em;
+  font-size: 1em;
+}
+
+button {
+  margin: 0.4em;
+  margin-left: 0;
+}
+
+.assignment {
+  border: 1px solid black;
+  width: max-content;
+  padding: 1em;
+}
+
+.rainbow-text {
+  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+  color: white;
+  font-size: 1.4em;
+  padding: 0.4em;
+  margin: 0.1em;
+}
