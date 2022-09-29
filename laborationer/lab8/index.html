@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>validateForm</title>
+  <link rel="shortcut icon" href="#">
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./script.js"></script>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <ul class="navbar__pages">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Shop</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="navbar__menu">MENU</div>
+    <ul class="navbar__entry">
+      <li><a href="#">Login</a></li>
+      <li><a class="active" href="#">Register</a></li>
+    </ul>
+  </nav>
+  <!-- REGISTER FORM -->
+  <div class="container">
+    <form class="form" id="form" action="/" method="GET">
+      <div class="form__row">
+        <label for="text">Name: </label>
+        <input type="text" id="textInput" required>
+      </div>
+      <div class="form__row">
+        <label for="email">Email: </label>
+        <input type="email" id="emailInput" required>
+      </div>
+      <div class="form__row">
+        <label for="password">Password: </label>
+        <input type="password" id="passwordInput" autocomplete="on" required>
+      </div>
+      <div class="form__row">
+        <label for="favoriteColor">Favorite color: </label>
+        <select id="favoriteColor" name="favoriteColor" required>
+          <option value="">Select one</option>
+          <option value="blue">Blue</option>
+          <option value="red">Red</option>
+          <option value="yellow">Yellow</option>
+          <option value="green">Green</option>
+        </select>
+      </div>
+      <label class="bb-1">What do you like: </label>
+      <div class="form__row">
+        <label for="flowers">Flowers? </label>
+        <input type="checkbox" id="flowers" name="flowers" value="Flowers">
+        <br />
+        <label for="swimming">Swimming? </label>
+        <input type="checkbox" id="swimming" name="swimming" value="Swimming">
+      </div>
+      <button type="submit" class="registerBtn" id="registerBtn">Register</button>
+    </form>
+    <!-- ERROR MESSAGES -->
+    <div id="error__msg">
+    </div>
+  </div>
+</body>
+</html>
