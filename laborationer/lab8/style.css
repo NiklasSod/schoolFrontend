@@ -1,0 +1,123 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+}
+
+/* 
+--- NAVBAR ---
+*/
+
+.navbar {
+  display: flex;
+  padding: 0 1em;
+  justify-content: space-between;
+  background-color: rgb(218, 218, 218);
+  border-bottom: 2px solid grey;
+}
+
+.navbar__menu {
+  display: none;
+}
+
+.navbar__pages {
+  display: flex;
+}
+
+.navbar__pages > li {
+  list-style-type: none;
+  padding: 1.4em;
+}
+
+.navbar__entry {
+  display: flex;
+}
+
+.navbar__entry > li {
+  list-style-type: none;
+  padding: 1.4em;
+}
+
+a {
+  text-decoration: none;
+  color: blue;
+  font-size: 1.2em;
+}
+
+.active {
+  color: rgb(255, 91, 91);
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 620px) {
+  .navbar__pages > li {
+    display: none;
+  }
+  .navbar__menu {
+    display: block;
+    position: absolute;
+    left: 1.6em;
+    top: 1em;
+    font-size: 1.2em;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 0.2em;
+  }
+}
+
+/* 
+--- REGISTER FORM ---
+*/
+
+.form {
+  margin: 2em auto;
+  background-color: rgb(221, 249, 255);
+  width: max-content;
+  padding: 1em;
+  border-radius: 2em;
+}
+
+.form__row {
+  padding: 0.2em;
+}
+
+.form__row > input {
+  float: right;
+  margin-left: 1em;
+}
+
+.form__row > select {
+  float: right;
+  width: 8em;
+}
+
+.registerBtn {
+  display: flex;
+  margin: auto;
+  color: white;
+  background-color: blue;
+  border: none;
+  padding: 0.4em;
+  border-radius: 0.8em;
+}
+
+/* 
+--- ERROR MESSAGE ---
+*/
+
+.error__msg {
+  width: max-content;
+  margin: auto;
+  background-color: rgb(255, 95, 95);
+  border-radius: 1em;
+}
+
+.error__msg__text::before {
+  content: "Error: ";
+}
+
