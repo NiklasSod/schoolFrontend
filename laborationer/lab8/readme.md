@@ -1,5 +1,3 @@
-***COMMENT*** Remove required on inputs in index.html to better test error messages.
-
 Du ska i denna laborationsuppgift göra följande:
 
 Skapa ett formulär som innehåller minst en av varje följande inputs:

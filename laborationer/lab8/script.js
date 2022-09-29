@@ -3,6 +3,8 @@ const textInput = document.getElementById("textInput");
 const emailInput = document.getElementById("emailInput");
 const passwordInput = document.getElementById("passwordInput");
 const favoriteColor = document.getElementById("favoriteColor");
+const likeFlowers = document.getElementById("flowers");
+const likeSwimming = document.getElementById("swimming");
 
 const registerBtn = document.getElementById("registerBtn");
 
@@ -12,6 +14,7 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
   let messages = [];
   
+  // check user input
   if (textInput.value === "" || textInput.value == null) {
     messages.push("Name is required");
   };
@@ -25,6 +28,7 @@ form.addEventListener("submit", (e) => {
     messages.push("Please pick a favorite color");
   };
 
+  // if error user input
   if (messages.length > 0) {
     error__msg.classList.add("error__msg");
     for (let i = 0; i < messages.length; i++) {
@@ -42,7 +46,21 @@ form.addEventListener("submit", (e) => {
       error__msg.removeChild(errMsgText);
       },3000 + (i * 1500));
     };
+    return;
   };
-});
 
-// if nothing wrong print to user all its inputs and choices
+  // if ok user input
+  let userInput = [];
+  userInput.push(`User name: ${textInput.value}`);
+  userInput.push(`User email: ${emailInput.value}`);
+  userInput.push(`User password: ${passwordInput.value}`);
+  userInput.push("Ok.., why did you not salt and hash the password!?");
+  userInput.push(`User favorite color: ${favoriteColor.value}`);
+  if (likeFlowers.checked) {
+    userInput.push(`User like - ${likeFlowers.value}.`)
+  }
+  if (likeSwimming.checked) {
+    userInput.push(`User like - ${likeSwimming.value}.`)
+  }
+  console.log(userInput);
+});

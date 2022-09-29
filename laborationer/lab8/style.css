@@ -83,7 +83,7 @@ a {
 }
 
 .form__row {
-  padding: 0.2em;
+  padding: 0.3em;
 }
 
 .form__row > input {
@@ -104,6 +104,10 @@ a {
   border: none;
   padding: 0.4em;
   border-radius: 0.8em;
+}
+
+.bb-1 {
+  border-bottom: 1px dotted black;
 }
 
 /* 
