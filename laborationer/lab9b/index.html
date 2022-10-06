@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./script.js"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <img
+        class="nav__logo"
+        src="./mcdonald-s-15-logo-svgrepo-com.svg"
+        alt="McDonald logo"
+      />
+      <ul class="nav__links">
+        <li><a href="#">Products</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact us</a></li>
+        <li><a href="#">Features</a></li>
+      </ul>
+      <img class="nav__menu" id="nav__menu" onClick="menuBtn()" src="./icons8-menu.svg" />
+    </nav>
+    <div class="container">
+      <h1 id="displayPageWidth" class="displayPageWidth"></h1>
+      <ul id="nav__links__open" class="hidden">
+        <li><a href="#">Products</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact us</a></li>
+        <li><a href="#">Features</a></li>
+      </ul>
+    </div>
+  </body>
+</html>
