@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+  --clr-primary: #294d49;
+  --clr-border: #9f9f9f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #f1f1f1;
+}
+body * {
+  font-family: 'Roboto', sans-serif;
+}
+
+.btn {
+  padding: .5em 1.4em;
+  border: 0;
+  border-radius: .5em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 100ms ease;
+}
+.btn-primary {
+  background-color: var(--clr-primary);
+  color: #fff;
+}
+.btn-primary:hover {
+  background-color: hsl(173, 31%, 18%);
+}
+.btn-primary:active {
+  background-color: hsl(173, 31%, 13%);
+}
+
+.wrapper {
+  background-color: #ffffff;
+  max-width: 550px;
+  margin: 3rem auto;
+  height: 70vh;
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  background-color: var(--clr-primary);
+  color: #fff;
+  text-align: center;
+  padding: .7rem;
+}
+.output {
+  /* background-color: red; */
+  flex: 1;
+  padding-inline: 1rem;
+  overflow: auto;
+}
+.todo-form {
+  border-top: 1px solid var(--clr-border);
+  padding: 1rem;
+}
+.input-group {
+  display: flex;
+}
+.form-control {
+  padding: .5em .6em;
+  border-radius: .6em 0 0 .6em;
+  flex: 5;
+  border: 1px solid var(--clr-border);
+}
+.form-control:focus {
+  /* border: 2px solid var(--clr-primary); */
+  outline-color: var(--clr-primary);
+}
+.input-group button {
+  flex: 1;
+  border-radius: 0 .6em .6em 0;
+}
+
+.todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--clr-border);
+  padding-block: .2rem;
+}
+.todo-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+}
+.todo-title:hover {
+  color: #cdcdcd;
+}
+.todo button {
+  background-color: firebrick;
+  color: #fff;
+  border: 0;
+  padding: .3em .5em;
+  cursor: pointer;
+  border-radius: .2em;
+  transition: background 100ms ease;
+}
+.todo button:hover {
+  background-color: hsl(0, 68%, 35%);
+}
+.todo button:active {
+  background-color: hsl(0, 68%, 25%);
+}
+
+.completed {
+  color: #a7a7a7;
+  text-decoration: line-through;
+}
+.error {
+  text-align: center;
+  margin-bottom: .5rem;
+  color: firebrick;
+}
+.d-none {
+  display: none;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 11px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #646464;
+  border: 2px solid #fff;
+  border-radius: 100vh;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--clr-primary);
+}

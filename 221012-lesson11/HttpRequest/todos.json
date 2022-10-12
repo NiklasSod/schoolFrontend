@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "title": "Städa",
+    "completed": false
+  },
+  {
+    "id": 2,
+    "title": "Posta brev",
+    "completed": true
+  },
+  {
+    "id": 3,
+    "title": "fixa toan",
+    "completed": false
+  }
+]
