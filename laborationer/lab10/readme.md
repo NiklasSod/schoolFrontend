@@ -2,7 +2,8 @@
 
 Deck of Cards API låter oss dra kort från en eller flera kortlekar. 
 I response body så får man både vilket värde kortet har (suit och value) samt en URL till en bild på det dragna kortet. 
-Dokumentation: http://deckofcardsapi.com/https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch 
+Dokumentation: http://deckofcardsapi.com/
+https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch 
 
 Skriv en sida som visar ett kort i taget när användaren klickar på en knapp. 
 
