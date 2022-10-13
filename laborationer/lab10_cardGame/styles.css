@@ -12,7 +12,7 @@ body {
 .container {
   width: 60%;
   margin: 5em auto;
-  min-height: 28em;
+  min-height: 32em;
   background-color: rgb(252, 139, 139);
   border: 1px solid black;
 }

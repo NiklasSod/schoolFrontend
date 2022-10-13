@@ -36,7 +36,9 @@ const createCard = () => {
   createCardText(latestDraw);
   createCardImg(latestDraw);
   addCardToDrawPile();
-  showCardsUsed();
+  setTimeout(() => {
+    showCardsUsed();
+  }, 10);
 };
 
 const createCardImg = (latestDraw) => {
