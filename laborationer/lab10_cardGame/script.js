@@ -86,11 +86,13 @@ drawDeckBtn.addEventListener("click", async(e) => {
 
 drawCardBtn.addEventListener('click', async(e) => {
   e.preventDefault();
-  cardDiv.innerHTML = '';
-  if(usedCards.length === 52) {
+  if (usedCards.length === 52) {
     await restartDrawGame();
-  }
-  await getCard();
+  };
+  if (cards.length === 0) {
+    await getCard();
+  };
+  cardDiv.innerHTML = '';
   createCard();
   console.log(usedCards);
   console.log(cards);
