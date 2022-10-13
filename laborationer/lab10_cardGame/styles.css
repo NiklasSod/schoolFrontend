@@ -1,0 +1,76 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-image: url('./cards_bg.png');
+  width: 100%;
+}
+
+.container {
+  width: 60%;
+  margin: 5em auto;
+  min-height: 28em;
+  background-color: rgb(252, 139, 139);
+  border: 1px solid black;
+}
+
+.draw__card__btn {
+  border: 0;
+  border-radius: 1em;
+  padding: 0.6em 1em;
+  background-color: rgb(63, 185, 255);
+  color: white;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  margin-top: 2em;
+  font-size: 0.9em;
+}
+
+.hide {
+  display: none;
+}
+
+.cardImg {
+  width: 14em;
+  display: block;
+  margin: 1em auto;
+}
+
+.cardText {
+  background-color: rgb(226, 89, 89);
+  color: white;
+  font-size: 1.6em;
+  text-align: center;
+  width: max-content;
+  margin: auto;
+  border-radius: 1em;
+  padding: 0.2em;
+  margin-top: 0.6em;
+}
+
+.drawPile {
+  background-color: rgb(255, 88, 247);
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    min-height: 18em;
+  }
+
+  .draw__card__btn {
+    font-size: 0.8em;
+  }
+
+  .cardImg {
+    width: 10em;
+  }
+
+  .cardText {
+    font-size: 1em;
+  }
+}
