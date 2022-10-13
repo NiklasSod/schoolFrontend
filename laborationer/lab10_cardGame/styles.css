@@ -12,12 +12,12 @@ body {
 .container {
   width: 60%;
   margin: 5em auto;
-  min-height: 28em;
+  min-height: 32em;
   background-color: rgb(252, 139, 139);
   border: 1px solid black;
 }
 
-.draw__btn {
+.draw__card__btn {
   border: 0;
   border-radius: 1em;
   padding: 0.6em 1em;
@@ -28,6 +28,10 @@ body {
   margin: auto;
   margin-top: 2em;
   font-size: 0.9em;
+}
+
+.hide {
+  display: none;
 }
 
 .cardImg {
@@ -48,12 +52,17 @@ body {
   margin-top: 0.6em;
 }
 
+.drawPile {
+  background-color: rgb(255, 88, 247);
+  text-align: center;
+}
+
 @media screen and (max-width: 600px) {
   .container {
     min-height: 18em;
   }
 
-  .draw__btn {
+  .draw__card__btn {
     font-size: 0.8em;
   }
 
