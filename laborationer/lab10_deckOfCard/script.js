@@ -4,7 +4,12 @@ const cardDiv = document.getElementById('card');
 let card = [];
 
 const getCard = async() => {
-  const res = await fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=1')
+  const res = await fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=1', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  })
   const data = await res.json();
   card.push(data);
 };
@@ -38,5 +43,4 @@ drawBtn.addEventListener("click", async(e) => {
   cardDiv.innerHTML = '';
   await getCard();
   createCard();
-  console.log(card); //TEMP
 });
