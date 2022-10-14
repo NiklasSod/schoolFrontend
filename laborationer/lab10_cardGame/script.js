@@ -46,10 +46,21 @@ const createCard = () => {
   let latestDraw = cards.length - 1;
   createCardText(latestDraw);
   const loadedImg = createCardImg(latestDraw);
-  addCardToDrawPile();
   loadedImg.onload = (e) => {
-    showLastCardsUsed();
+    createShowAmountCardsUsed();
   };
+  addCardToDrawPile();
+};
+
+const createCardText = (latestDraw) => {
+  let suit = cards[latestDraw].suit;
+  let value = cards[latestDraw].value;
+  let text = `${value} OF ${suit}`;
+  usedCardsInfo += text + '. ';
+  let cardText = document.createElement('p');
+  cardText.classList.add('cardText');
+  cardText.innerText = text;
+  cardDiv.appendChild(cardText);
 };
 
 const createCardImg = (latestDraw) => {
@@ -61,18 +72,11 @@ const createCardImg = (latestDraw) => {
   return cardImg;
 };
 
-const createCardText = (latestDraw) => {
-  let suit = cards[latestDraw].suit;
-  let value = cards[latestDraw].value;
-  let text = `${value} OF ${suit}`;
-  if (usedCards.length === 0) {
-    usedCardsInfo = '';
-  };
-  usedCardsInfo += text + '. ';
-  let cardText = document.createElement('p');
-  cardText.classList.add('cardText');
-  cardText.innerText = text;
-  cardDiv.appendChild(cardText);
+const createShowAmountCardsUsed = () => {
+  let showDrawNr = document.createElement('p');
+  showDrawNr.innerText = `Cards drawn: ${usedCards.length} cards`;
+  showDrawNr.classList.add('drawPile');
+  cardDiv.appendChild(showDrawNr);
 };
 
 const addCardToDrawPile = () => {
@@ -81,24 +85,64 @@ const addCardToDrawPile = () => {
   cards.pop();
 };
 
-const showLastCardsUsed = () => {
-  let showDrawNr = document.createElement('p');
-  showDrawNr.innerText = `Cards drawn: ${usedCards.length} cards`;
-  showDrawNr.classList.add('drawPile');
-  cardDiv.appendChild(showDrawNr);
-};
+/**
+ * DRAW DECK BUTTON
+ */
+
+drawDeckBtn.addEventListener("click", async(e) => {
+  e.preventDefault();
+  drawDeckBtn.disabled = true;
+  await getDeck();
+  drawDeckBtn.innerHTML = 'Draw card';
+  drawDeckBtn.setAttribute('class', 'hide');
+  drawCardBtn.removeAttribute('class');
+  drawCardBtn.setAttribute('class', 'draw__card__btn');
+});
+
+/**
+ * DRAW CARD BUTTON
+ */
+
+drawCardBtn.addEventListener('click', async(e) => {
+  e.preventDefault();
+  if (usedCards.length === 52) {
+    drawCardBtn.disabled = true;
+    drawCardBtn.style.textDecoration = 'line-through';
+    return;
+  };
+  if (cards.length === 0) {
+    await getCard();
+  };
+  cardDiv.innerHTML = '';
+  createCard();
+  showUsedCardsBtn.removeAttribute('class');
+  showUsedCardsBtn.setAttribute('class', 'used__cards__btn')
+  showUsedCardsBtn.disabled = false;
+});
+
+/**
+ * RESTART BUTTON
+ */
+
+restartBtn.addEventListener('click', async(e) => {
+  e.preventDefault();
+  window.location.reload();
+});
+
+/**
+ * DRAW PILE BUTTON + FUNCTIONALITY
+ */
+
+showUsedCardsBtn.addEventListener('click', (e) => {
+  showAllCardsUsed();
+  showUsedCardsBtn.disabled = true;
+});
 
 const showAllCardsUsed = () => {
   let updatedText = updateText();
-  console.log(updatedText)
   let showUsedCardsInfo = document.createElement('p');
   showUsedCardsInfo.innerHTML = updatedText;
   cardDiv.appendChild(showUsedCardsInfo);
-};
-
-const restartDrawGame = async() => {
-  usedCards.length = 0;
-  await getDeck();
 };
 
 const updateText = () => {
@@ -114,43 +158,3 @@ const updateText = () => {
     .replaceAll(' OF ', '');
     return updatedText;
 };
-
-drawDeckBtn.addEventListener("click", async(e) => {
-  e.preventDefault();
-  await getDeck();
-  drawDeckBtn.innerHTML = 'Draw card';
-  drawDeckBtn.setAttribute('class', 'hide');
-  drawCardBtn.removeAttribute('class');
-  drawCardBtn.setAttribute('class', 'draw__card__btn');
-});
-
-drawCardBtn.addEventListener('click', async(e) => {
-  e.preventDefault();
-  console.log(usedCards.length)
-  if (usedCards.length === 52) {
-    drawCardBtn.disabled = true;
-    drawCardBtn.style.textDecoration = 'line-through';
-    return;
-  };
-  if (usedCards.length === 52) {
-    await restartDrawGame();
-  };
-  if (cards.length === 0) {
-    await getCard();
-  };
-  cardDiv.innerHTML = '';
-  createCard();
-  showUsedCardsBtn.removeAttribute('class');
-  showUsedCardsBtn.setAttribute('class', 'used__cards__btn')
-  showUsedCardsBtn.disabled = false;
-});
-
-restartBtn.addEventListener('click', async(e) => {
-  e.preventDefault();
-  window.location.reload();
-});
-
-showUsedCardsBtn.addEventListener('click', (e) => {
-  showAllCardsUsed();
-  showUsedCardsBtn.disabled = true;
-});

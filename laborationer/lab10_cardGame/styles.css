@@ -76,7 +76,7 @@ body {
 
 @media screen and (max-width: 600px) {
   .container {
-    min-height: 24em;
+    min-height: 25em;
   }
 
   .draw__card__btn {
