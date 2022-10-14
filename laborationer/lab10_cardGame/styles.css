@@ -11,13 +11,13 @@ body {
 
 .container {
   width: 60%;
-  margin: 5em auto;
+  margin: 3em auto;
   min-height: 32em;
   background-color: rgb(252, 139, 139);
   border: 1px solid black;
 }
 
-.draw__card__btn {
+.draw__card__btn, .restart__btn {
   border: 0;
   border-radius: 1em;
   padding: 0.6em 1em;
@@ -34,10 +34,27 @@ body {
   display: none;
 }
 
-.cardImg {
+.restart__btn {
+  position: absolute;
+  margin-top: 0;
+  top: 0.6em;
+  left: 5em;
+}
+
+.used__cards__btn {
+  background-color: rgb(73, 255, 198);
+  cursor: pointer;
+  margin: 0.2em 0 0 0.2em;
+}
+
+.cardImg, .cardBackImg {
   width: 14em;
   display: block;
   margin: 1em auto;
+}
+
+.cardBackImg {
+  margin-top: 5em;
 }
 
 .cardText {
@@ -59,15 +76,19 @@ body {
 
 @media screen and (max-width: 600px) {
   .container {
-    min-height: 18em;
+    min-height: 24em;
   }
 
   .draw__card__btn {
     font-size: 0.8em;
   }
 
-  .cardImg {
+  .cardImg, .cardBackImg {
     width: 10em;
+  }
+
+  .cardBackImg {
+    margin-top: 3em;
   }
 
   .cardText {
