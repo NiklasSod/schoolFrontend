@@ -1,5 +1,6 @@
 let startBtn = document.getElementById('startBtn');
 let restartBtn = document.getElementById('restartBtn');
+let stopBtn = document.getElementById('stopBtn');
 let dealerHand = document.getElementById('dealerHand');
 let playerHand = document.getElementById('playerHand');
 const cardBack = './cardback.png';
@@ -22,8 +23,6 @@ const getDecks = async() => {
   const data = await res.json();
   deck_id = data.deck_id;
   await getCards(deck_id);
-  // console.log('All cards');
-  // console.log(cards);
 };
 
 const getCards = async(id) => {
@@ -44,14 +43,8 @@ startBtn.disabled = true;
 getDecks();
 
 const roundStart = () => {
-  let dealerValue = dealerCardBack();
-  calculateValue('dealer', dealerValue);
-  let playerValue = playerFirstCard();
-  calculateValue('player', playerValue);
-  // console.log(dealerPoints)
-  // console.log(dealerAce)
-  // console.log(playerPoints)
-  // console.log(playerAce)
+  dealerCardBack();
+  playerCard();
 };
 
 const dealerCardBack = () => {
@@ -62,47 +55,80 @@ const dealerCardBack = () => {
   dealerSecretCard.push(cards[0]);
   usedCards.push(cards[0]);
   const cardValue = cards[0].value;
-  // console.log('dealerSecretCard');
-  // console.log(dealerSecretCard);
   cards.shift();
-  return cardValue;
+  calculateValue('dealer', cardValue);
 };
 
-const calculateValue = (person, value) => {
-  switch(value) {
-    case "ACE":
-      person === 'dealer' ? dealerPoints = 14 : playerPoints = 14;
-      person === 'dealer' ? dealerAce.push(1) :  playerAce.push(1);
-      break;
-    case "JACK":
-      person === 'dealer' ? dealerPoints = 10 : playerPoints = 10;
-      break;
-    case "QUEEN":
-      person === 'dealer' ? dealerPoints = 10 : playerPoints = 10;
-      break;
-    case "KING":
-      person === 'dealer' ? dealerPoints = 10 : playerPoints = 10;
-      break;
-    default:
-      person === 'dealer' ? dealerPoints = parseInt(value, 10) : playerPoints = parseInt(value, 10);
-      break;
-  };
-};
-
-const playerFirstCard = () => {
+const playerCard = () => {
   let cardImg = document.createElement('img');
   cardImg.classList.add('cardImg');
   let img = cards[0].image;
   cardImg.src = img;
   playerHand.appendChild(cardImg);
+  usedCards.push(cards[0]);
   const cardValue = cards[0].value;
-  return cardValue;
+  cards.shift();
+  calculateValue('player', cardValue);
+};
+
+const calculateValue = (person, value) => {
+  switch(value) {
+    case "ACE":
+      person === 'dealer' ? dealerPoints += 11 : playerPoints += 11;
+      person === 'dealer' ? dealerAce.push(1) :  playerAce.push(1);
+      break;
+    case "JACK":
+      person === 'dealer' ? dealerPoints += 10 : playerPoints += 10;
+      break;
+    case "QUEEN":
+      person === 'dealer' ? dealerPoints += 10 : playerPoints += 10;
+      break;
+    case "KING":
+      person === 'dealer' ? dealerPoints += 10 : playerPoints += 10;
+      break;
+    default:
+      person === 'dealer' ? dealerPoints += parseInt(value, 10) : playerPoints += parseInt(value, 10);
+      break;
+  };
+};
+
+const drawCard = () => {
+  const under21 = checkPlayerPoints();
+  console.log(playerPoints)
+  if (under21) {
+    playerCard();
+    return;
+  };
+  lostRound();
+};
+
+const checkPlayerPoints = () => {
+  if (playerPoints === 21) return false;
+  if (playerPoints > 20) {
+    if (playerAce.length > 0) {
+      playerAce.pop();
+      playerPoints -= 10;
+      if (playerPoints === 21) return false;
+      return true;
+    }
+    return false;
+  }
+  return true;
+};
+
+const lostRound = () => {
+  // add next hand btn / lost round text
 };
 
 startBtn.addEventListener('click', (e) => {
   e.preventDefault();
   startBtn.innerText = 'Draw card';
-  roundStart();
+  if (dealerPoints === 0) {
+    roundStart();
+    return;
+  };
+  stopBtn.classList.remove("hide");
+  drawCard();
 });
 
 restartBtn.addEventListener('click', (e) => {
