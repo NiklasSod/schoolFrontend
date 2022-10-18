@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --main-bg-color: rgb(207, 241, 255);
+}
+
+body {
+  background-color: var(--main-bg-color);
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  margin-top: 1em;
+  background-color: var(--main-bg-color);
+}
+
+.header {
+  text-align: center;
+}
+
+.bgc-red {
+  color: red;
+}
