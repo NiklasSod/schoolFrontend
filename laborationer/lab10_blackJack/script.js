@@ -184,6 +184,18 @@ const showDealerSecretCard = () => {
 const nextGame = () => {
   startBtn.innerText = 'Go again';
   resetScore();
+  checkPlayerCurrency();
+};
+
+const checkPlayerCurrency = () => {
+  if (playerCurrency <= 0) {
+    gameOver();
+  }
+};
+
+const gameOver = () => {
+  startBtn.disabled = true;
+  alert('GAME OVER');
 };
 
 const resetScore = () => {
@@ -205,7 +217,6 @@ const resetDivs = () => {
 
 startBtn.addEventListener('click', (e) => {
   e.preventDefault();
-  console.log(cards.length)
   if (startBtn.innerText === 'Go again') {
     resetDivs();
   };
