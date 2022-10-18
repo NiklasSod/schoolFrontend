@@ -7,6 +7,7 @@ let playerHand = document.getElementById('playerHand');
 let gameInfo = document.getElementById('gameInfo');
 let dealerInfo = document.getElementById('dealerInfo');
 let playerInfo = document.getElementById('playerInfo');
+let currencyDiv = document.getElementById('currencyDiv');
 const cardBack = './cardback.png';
 
 let cards = [];
@@ -16,6 +17,7 @@ let dealerPoints = 0;
 let dealerAce = [];
 let playerPoints = 0;
 let playerAce = [];
+let playerCurrency = 100;
 
 const getDecks = async() => {
   const res = await fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6', {
@@ -150,13 +152,18 @@ const checkDealerPoints = () => {
 
 const roundCompleteInfo = (value) => {
   gameInfo.classList.remove("hide");
-  startBtn.classList.add('hide');
   stopBtn.classList.add('hide');
   if (value) {
     showPoints('WINNER');
+    playerCurrency += 10;
+    currencyDiv.innerText = `Currency: ${playerCurrency}`;
+    nextGame();
     return;
   };
   showPoints('You lost');
+  playerCurrency -= 10;
+  currencyDiv.innerText = `Currency: ${playerCurrency}`;
+  nextGame();
 };
 
 const showPoints = (string) => {
@@ -174,8 +181,34 @@ const showDealerSecretCard = () => {
   dealerHand.appendChild(cardImg);
 };
 
+const nextGame = () => {
+  startBtn.innerText = 'Go again';
+  resetScore();
+};
+
+const resetScore = () => {
+  dealerSecretCard.length = 0;
+  dealerPoints = 0;
+  dealerAce.length = 0;
+  playerPoints = 0;
+  playerAce.length = 0;
+};
+
+const resetDivs = () => {
+  dealerHand.innerText = '';
+  playerHand.innerText = '';
+  gameInfo.classList.add("hide");
+  gameInfo.innerText = '';
+  dealerInfo.innerText = '';
+  playerInfo.innerText = '';
+};
+
 startBtn.addEventListener('click', (e) => {
   e.preventDefault();
+  console.log(cards.length)
+  if (startBtn.innerText === 'Go again') {
+    resetDivs();
+  };
   rules.classList.add('hide');
   startBtn.innerText = 'Draw card';
   stopBtn.classList.remove("hide");
@@ -192,7 +225,6 @@ restartBtn.addEventListener('click', (e) => {
 
 stopBtn.addEventListener('click', (e) => {
   e.preventDefault();
-  startBtn.classList.add('hide');
   stopBtn.classList.add('hide');
   showDealerSecretCard();
   while (dealerPoints < 17) {

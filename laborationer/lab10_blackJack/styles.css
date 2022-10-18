@@ -39,6 +39,12 @@ body {
   align-items: center;
 }
 
+.currency {
+  position: absolute;
+  top: 5em;
+  right: 2em;
+}
+
 .header {
   text-align: center;
   text-decoration: underline;
