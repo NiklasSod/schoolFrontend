@@ -10,14 +10,23 @@
 <body>
   <div class="container">
     <div class="flex">
-      <h1 class="header">Black<span class="bgc-red"> Jack</span></h1>
-      <button class="start-btn btn" id="startBtn">Start game</button>
-      <button class="restart-btn btn" id="restartBtn">Restart</button>
+      <h1 class="header">Black<span class="bgc-red">Jack</span></h1>
+      <button class="btn start-btn" id="startBtn">Start game</button>
+      <button class="btn restart-btn" id="restartBtn">Restart</button>
+    </div>
+    <div class="rules" id="rules">
+      <p>A friendly BlackJack game</p>
+      <p>Dealer must draw on 16 and stand on 17</p>
+      <p>You WIN on draw, even if dealer has 21 at start</p>
     </div>
     <div class="dealer" id="dealerHand"></div>
-    <div class="gameInfo hide" id="gameInfo"></div>
+    <div class="score">
+      <div class="endGameInfo" id="dealerInfo"></div>
+      <div class="gameInfo hide" id="gameInfo"></div>
+      <div class="endGameInfo" id="playerInfo"></div>
+    </div>
     <div class="player" id="playerHand"></div>
-    <button class="stop-btn btn hide" id="stopBtn">Stop draw</button>
+    <button class="btn stop-btn hide" id="stopBtn">Stop draw</button>
     <!-- <div class="draw__card__pile"></div> -->
     <!-- <div class="throw__card__pile"></div> -->
     <!-- <div class="currency"></div>  -->

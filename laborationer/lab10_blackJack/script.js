@@ -1,9 +1,12 @@
 let startBtn = document.getElementById('startBtn');
 let restartBtn = document.getElementById('restartBtn');
 let stopBtn = document.getElementById('stopBtn');
+let rules = document.getElementById('rules');
 let dealerHand = document.getElementById('dealerHand');
 let playerHand = document.getElementById('playerHand');
 let gameInfo = document.getElementById('gameInfo');
+let dealerInfo = document.getElementById('dealerInfo');
+let playerInfo = document.getElementById('playerInfo');
 const cardBack = './cardback.png';
 
 let cards = [];
@@ -41,50 +44,54 @@ const getCards = async(id) => {
 };
 
 startBtn.disabled = true; // enables again after all cards are loaded
-getDecks();
+getDecks(); // on page load
 
 const roundStart = () => {
   dealerCardBack();
   playerCard();
-  dealerFrontCard();
+  dealerCard();
   playerCard();
 };
 
 const dealerCardBack = () => {
+  createDealerCardBack();
+  dealerSecretCard.push(cards[0]);
+  putCardInUsedCardArray('dealer');
+};
+
+const createDealerCardBack = () => {
   let cardBackImg = document.createElement('img');
   cardBackImg.classList.add('cardBackImg');
   cardBackImg.setAttribute('id', 'cardBackImg');
   cardBackImg.src = cardBack;
   dealerHand.appendChild(cardBackImg);
-  dealerSecretCard.push(cards[0]);
+};
+
+const putCardInUsedCardArray = (person) => {
   usedCards.push(cards[0]);
   const cardValue = cards[0].value;
   cards.shift();
-  calculateValue('dealer', cardValue);
+  calculateValue(person, cardValue);
 };
 
-const dealerFrontCard = () => {
+const dealerCard = () => {
+  createCard(dealerHand);
+  putCardInUsedCardArray('dealer');
+};
+
+// person is dealer or player
+const createCard = (personHand) => {
   let cardImg = document.createElement('img');
   cardImg.classList.add('cardImg');
   let img = cards[0].image;
   cardImg.src = img;
-  dealerHand.appendChild(cardImg);
-  usedCards.push(cards[0]);
-  const cardValue = cards[0].value;
-  cards.shift();
-  calculateValue('dealer', cardValue);
+  personHand.appendChild(cardImg);
 };
 
 const playerCard = () => {
-  let cardImg = document.createElement('img');
-  cardImg.classList.add('cardImg');
-  let img = cards[0].image;
-  cardImg.src = img;
-  playerHand.appendChild(cardImg);
-  usedCards.push(cards[0]);
-  const cardValue = cards[0].value;
-  cards.shift();
-  calculateValue('player', cardValue);
+  createCard(playerHand);
+  putCardInUsedCardArray('player');
+
   if (!checkPlayerPoints()) {
     if (playerPoints === 21) return roundCompleteInfo(true);
     roundCompleteInfo(false);
@@ -146,10 +153,16 @@ const roundCompleteInfo = (value) => {
   startBtn.classList.add('hide');
   stopBtn.classList.add('hide');
   if (value) {
-    gameInfo.innerText = 'WINNER';
+    showPoints('WINNER');
     return;
   };
-  gameInfo.innerText = 'You lost';
+  showPoints('You lost');
+};
+
+const showPoints = (string) => {
+  dealerInfo.innerText = `Dealer: ${dealerPoints}`;
+  gameInfo.innerText = string;
+  playerInfo.innerText = `You: ${playerPoints}`;
 };
 
 const showDealerSecretCard = () => {
@@ -163,6 +176,7 @@ const showDealerSecretCard = () => {
 
 startBtn.addEventListener('click', (e) => {
   e.preventDefault();
+  rules.classList.add('hide');
   startBtn.innerText = 'Draw card';
   stopBtn.classList.remove("hide");
   if (dealerPoints === 0) {
@@ -181,10 +195,8 @@ stopBtn.addEventListener('click', (e) => {
   startBtn.classList.add('hide');
   stopBtn.classList.add('hide');
   showDealerSecretCard();
-  console.log(dealerPoints)
-
   while (dealerPoints < 17) {
-    dealerFrontCard();
+    dealerCard();
     checkDealerPoints();
   };
   if (dealerPoints > 21) return roundCompleteInfo(true);
