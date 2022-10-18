@@ -46,14 +46,32 @@ getDecks();
 const roundStart = () => {
   dealerCardBack();
   playerCard();
+  dealerFrontCard();
+  playerCard();
+  console.log('dealer cards')
+  console.log(dealerSecretCard[0].value)
+  console.log(dealerPoints)
 };
 
 const dealerCardBack = () => {
   let cardBackImg = document.createElement('img');
   cardBackImg.classList.add('cardBackImg');
+  cardBackImg.setAttribute('id', 'cardBackImg');
   cardBackImg.src = cardBack;
   dealerHand.appendChild(cardBackImg);
   dealerSecretCard.push(cards[0]);
+  usedCards.push(cards[0]);
+  const cardValue = cards[0].value;
+  cards.shift();
+  calculateValue('dealer', cardValue);
+};
+
+const dealerFrontCard = () => {
+  let cardImg = document.createElement('img');
+  cardImg.classList.add('cardImg');
+  let img = cards[0].image;
+  cardImg.src = img;
+  dealerHand.appendChild(cardImg);
   usedCards.push(cards[0]);
   const cardValue = cards[0].value;
   cards.shift();
@@ -113,21 +131,32 @@ const checkPlayerPoints = () => {
 
 const roundCompleteInfo = (value) => {
   gameInfo.classList.remove("hide");
+  startBtn.classList.add('hide');
+  stopBtn.classList.add('hide');
   if (value) {
-    gameInfo.innerText = 'WINNER'
+    gameInfo.innerText = 'WINNER';
     return;
   };
-  gameInfo.innerText = 'You lost'
+  gameInfo.innerText = 'You lost';
+};
+
+const showDealerSecretCard = () => {
+  document.getElementById('cardBackImg').remove();
+  let cardImg = document.createElement('img');
+  cardImg.classList.add('cardImg');
+  let img = dealerSecretCard[0].image;
+  cardImg.src = img;
+  dealerHand.appendChild(cardImg);
 };
 
 startBtn.addEventListener('click', (e) => {
   e.preventDefault();
   startBtn.innerText = 'Draw card';
+  stopBtn.classList.remove("hide");
   if (dealerPoints === 0) {
     roundStart();
     return;
   };
-  stopBtn.classList.remove("hide");
   if (checkPlayerPoints()) return playerCard();
 });
 
@@ -137,5 +166,11 @@ restartBtn.addEventListener('click', (e) => {
 
 stopBtn.addEventListener('click', (e) => {
   e.preventDefault();
-  
+  startBtn.classList.add('hide');
+  stopBtn.classList.add('hide');
+  showDealerSecretCard();
+  while (dealerPoints < 17) {
+    dealerFrontCard();
+  };
+  // fix dealer calculations
 });
