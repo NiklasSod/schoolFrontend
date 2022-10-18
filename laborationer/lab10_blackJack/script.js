@@ -40,7 +40,7 @@ const getCards = async(id) => {
   startBtn.disabled = false;
 };
 
-startBtn.disabled = true;
+startBtn.disabled = true; // enables again after all cards are loaded
 getDecks();
 
 const roundStart = () => {
@@ -48,9 +48,6 @@ const roundStart = () => {
   playerCard();
   dealerFrontCard();
   playerCard();
-  console.log('dealer cards')
-  console.log(dealerSecretCard[0].value)
-  console.log(dealerPoints)
 };
 
 const dealerCardBack = () => {
@@ -129,6 +126,21 @@ const checkPlayerPoints = () => {
   return true;
 };
 
+// TEMP checkPlayerPoints looks alot like checkDealerPoints...
+const checkDealerPoints = () => {
+  if (dealerPoints === 21) return false;
+  if (dealerPoints > 20) {
+    if (dealerAce.length > 0) {
+      dealerAce.pop();
+      dealerPoints -= 10;
+      if (dealerPoints === 21) return false;
+      return true;
+    }
+    return false;
+  }
+  return true;
+};
+
 const roundCompleteInfo = (value) => {
   gameInfo.classList.remove("hide");
   startBtn.classList.add('hide');
@@ -169,8 +181,14 @@ stopBtn.addEventListener('click', (e) => {
   startBtn.classList.add('hide');
   stopBtn.classList.add('hide');
   showDealerSecretCard();
+  console.log(dealerPoints)
+
   while (dealerPoints < 17) {
     dealerFrontCard();
+    checkDealerPoints();
   };
-  // fix dealer calculations
+  if (dealerPoints > 21) return roundCompleteInfo(true);
+  if (dealerPoints === playerPoints) return roundCompleteInfo(true);
+  if (dealerPoints > playerPoints) return roundCompleteInfo(false);
+  roundCompleteInfo(true);
 });
