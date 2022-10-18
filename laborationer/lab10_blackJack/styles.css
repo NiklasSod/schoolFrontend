@@ -8,8 +8,23 @@
   --main-bg-color: rgb(207, 241, 255);
 }
 
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 body {
   background-color: var(--main-bg-color);
+}
+
+.btn {
+  background-color: rgb(0, 115, 255);
+  color: #fff;
+  padding: 1em;
+  margin: 0 0 0 4em;
+  border: none;
+  border-radius: 1em;
 }
 
 .container {
@@ -21,8 +36,27 @@ body {
 
 .header {
   text-align: center;
+  text-decoration: underline;
+  text-decoration-color: red;
 }
 
 .bgc-red {
   color: red;
+  text-decoration: underline;
+  text-decoration-color: black;
+}
+
+.cardImg, .cardBackImg {
+  width: 10em;
+  /* display: block;
+  margin: 1em auto; */
+}
+
+.dealer, .player {
+  margin: 1em;
+  text-align: center;
+}
+
+.hide {
+  display: none;
 }
