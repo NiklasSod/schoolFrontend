@@ -18,8 +18,10 @@ let dealerAce = [];
 let playerPoints = 0;
 let playerAce = [];
 let playerCurrency = 100;
+let roundsPlayed = 0;
 
 const getDecks = async() => {
+  currencyDiv.innerText = `Currency: ${playerCurrency}`
   const res = await fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6', {
     method: 'GET',
     headers: {
@@ -100,6 +102,7 @@ const playerCard = () => {
   };
 };
 
+// person is dealer or player
 const calculateValue = (person, value) => {
   switch(value) {
     case "ACE":
@@ -129,25 +132,19 @@ const checkPlayerPoints = () => {
       playerPoints -= 10;
       if (playerPoints === 21) return false;
       return true;
-    }
+    };
     return false;
-  }
+  };
   return true;
 };
 
-// TEMP checkPlayerPoints looks alot like checkDealerPoints...
 const checkDealerPoints = () => {
-  if (dealerPoints === 21) return false;
-  if (dealerPoints > 20) {
+  if (dealerPoints > 21) {
     if (dealerAce.length > 0) {
       dealerAce.pop();
       dealerPoints -= 10;
-      if (dealerPoints === 21) return false;
-      return true;
-    }
-    return false;
-  }
-  return true;
+    };
+  };
 };
 
 const roundCompleteInfo = (value) => {
@@ -157,12 +154,14 @@ const roundCompleteInfo = (value) => {
     showPoints('WINNER');
     playerCurrency += 10;
     currencyDiv.innerText = `Currency: ${playerCurrency}`;
+    showDealerSecretCard();
     nextGame();
     return;
   };
   showPoints('You lost');
   playerCurrency -= 10;
   currencyDiv.innerText = `Currency: ${playerCurrency}`;
+  showDealerSecretCard();
   nextGame();
 };
 
@@ -178,7 +177,7 @@ const showDealerSecretCard = () => {
   cardImg.classList.add('cardImg');
   let img = dealerSecretCard[0].image;
   cardImg.src = img;
-  dealerHand.appendChild(cardImg);
+  dealerHand.insertBefore(cardImg, dealerHand.firstChild);
 };
 
 const nextGame = () => {
@@ -195,7 +194,8 @@ const checkPlayerCurrency = () => {
 
 const gameOver = () => {
   startBtn.disabled = true;
-  alert('GAME OVER');
+  startBtn.classList.add('hide');
+  gameInfo.innerText += ` - GAME OVER - you played ${roundsPlayed} rounds`;
 };
 
 const resetScore = () => {
@@ -224,6 +224,7 @@ startBtn.addEventListener('click', (e) => {
   startBtn.innerText = 'Draw card';
   stopBtn.classList.remove("hide");
   if (dealerPoints === 0) {
+    roundsPlayed++;
     roundStart();
     return;
   };
@@ -237,7 +238,6 @@ restartBtn.addEventListener('click', (e) => {
 stopBtn.addEventListener('click', (e) => {
   e.preventDefault();
   stopBtn.classList.add('hide');
-  showDealerSecretCard();
   while (dealerPoints < 17) {
     dealerCard();
     checkDealerPoints();
