@@ -3,6 +3,7 @@ let restartBtn = document.getElementById('restartBtn');
 let stopBtn = document.getElementById('stopBtn');
 let dealerHand = document.getElementById('dealerHand');
 let playerHand = document.getElementById('playerHand');
+let gameInfo = document.getElementById('gameInfo');
 const cardBack = './cardback.png';
 
 let cards = [];
@@ -69,6 +70,10 @@ const playerCard = () => {
   const cardValue = cards[0].value;
   cards.shift();
   calculateValue('player', cardValue);
+  if (!checkPlayerPoints()) {
+    if (playerPoints === 21) return roundCompleteInfo(true);
+    roundCompleteInfo(false);
+  };
 };
 
 const calculateValue = (person, value) => {
@@ -92,16 +97,6 @@ const calculateValue = (person, value) => {
   };
 };
 
-const drawCard = () => {
-  const under21 = checkPlayerPoints();
-  console.log(playerPoints)
-  if (under21) {
-    playerCard();
-    return;
-  };
-  lostRound();
-};
-
 const checkPlayerPoints = () => {
   if (playerPoints === 21) return false;
   if (playerPoints > 20) {
@@ -116,8 +111,13 @@ const checkPlayerPoints = () => {
   return true;
 };
 
-const lostRound = () => {
-  // add next hand btn / lost round text
+const roundCompleteInfo = (value) => {
+  gameInfo.classList.remove("hide");
+  if (value) {
+    gameInfo.innerText = 'WINNER'
+    return;
+  };
+  gameInfo.innerText = 'You lost'
 };
 
 startBtn.addEventListener('click', (e) => {
@@ -128,9 +128,14 @@ startBtn.addEventListener('click', (e) => {
     return;
   };
   stopBtn.classList.remove("hide");
-  drawCard();
+  if (checkPlayerPoints()) return playerCard();
 });
 
 restartBtn.addEventListener('click', (e) => {
   location.reload();
+});
+
+stopBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  
 });

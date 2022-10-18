@@ -8,14 +8,27 @@
   --main-bg-color: rgb(207, 241, 255);
 }
 
+body {
+  background-color: var(--main-bg-color);
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  margin-top: 1em;
+  background-color: var(--main-bg-color);
+}
+
 .flex {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-body {
-  background-color: var(--main-bg-color);
+.header {
+  text-align: center;
+  text-decoration: underline;
+  text-decoration-color: red;
 }
 
 .btn {
@@ -39,19 +52,6 @@ body {
   display: block;
 }
 
-.container {
-  width: 80%;
-  margin: auto;
-  margin-top: 1em;
-  background-color: var(--main-bg-color);
-}
-
-.header {
-  text-align: center;
-  text-decoration: underline;
-  text-decoration-color: red;
-}
-
 .bgc-red {
   color: red;
   text-decoration: underline;
@@ -71,4 +71,14 @@ body {
 
 .hide {
   display: none;
+}
+
+.gameInfo {
+  text-align: center;
+  font-size: 1.4em;
+  background-color: rgb(165, 165, 42);
+  width: max-content;
+  margin: auto;
+  padding: 0.4em;
+  border-radius: 1em;
 }
