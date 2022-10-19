@@ -198,7 +198,6 @@ const resetDivs = () => {
 
 startBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  console.log(cards)
   if (cards.length === 0) {
     cards = [...fetchedCards];
   }

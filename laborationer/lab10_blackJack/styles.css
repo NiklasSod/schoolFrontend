@@ -108,3 +108,26 @@ body {
   padding: 0.4em;
   border-radius: 1em;
 }
+
+@media screen and (max-width: 719px){
+  .container {
+    width: 90%;
+  }
+
+  .cardImg, .cardBackImg {
+    width: 6em;
+  }
+
+  .restart-btn {
+    font-size: 0.6em;
+  }
+
+  .header {
+    font-size: 2em;
+  }
+
+  .currency {
+    top: 3.4em;
+    right: 1.2em;
+  }
+}
