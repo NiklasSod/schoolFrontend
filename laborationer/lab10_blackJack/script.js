@@ -126,7 +126,6 @@ const roundCompleteInfo = (value) => {
     return;
   }
   announceStatusToUser("You lost", "-");
-  nextGame();
 };
 
 const announceStatusToUser = (text, calc) => {
