@@ -1,54 +1,32 @@
-let startBtn = document.getElementById('startBtn');
-let restartBtn = document.getElementById('restartBtn');
-let stopBtn = document.getElementById('stopBtn');
-let rules = document.getElementById('rules');
-let dealerHand = document.getElementById('dealerHand');
-let playerHand = document.getElementById('playerHand');
-let gameInfo = document.getElementById('gameInfo');
-let dealerInfo = document.getElementById('dealerInfo');
-let playerInfo = document.getElementById('playerInfo');
-let currencyDiv = document.getElementById('currencyDiv');
-const cardBack = './cardback.png';
+let startBtn = document.getElementById("startBtn");
+let restartBtn = document.getElementById("restartBtn");
+let stopBtn = document.getElementById("stopBtn");
+let rules = document.getElementById("rules");
+let dealerHand = document.getElementById("dealerHand");
+let playerHand = document.getElementById("playerHand");
+let gameInfo = document.getElementById("gameInfo");
+let dealerInfo = document.getElementById("dealerInfo");
+let playerInfo = document.getElementById("playerInfo");
+let currencyDiv = document.getElementById("currencyDiv");
 
-let cards = [];
+import { cards, getDecks } from "./javascript/fetch.js"; 
+import { createDealerCardBack, showDealerSecretCard } from "./javascript/functions.js";
+
 let usedCards = [];
-let dealerSecretCard = [];
+export let dealerSecretCard = [];
 let dealerPoints = 0;
 let dealerAce = [];
 let playerPoints = 0;
 let playerAce = [];
-let playerCurrency = 100;
 let roundsPlayed = 0;
-
-const getDecks = async() => {
-  currencyDiv.innerText = `Currency: ${playerCurrency}`
-  const res = await fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-  });
-  const data = await res.json();
-  deck_id = data.deck_id;
-  await getCards(deck_id);
-};
-
-const getCards = async(id) => {
-  const res = await fetch(`https://deckofcardsapi.com/api/deck/${id}/draw/?count=312`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-  });
-  const data = await res.json();
-  for(let i = 0; i < data.cards.length; i++) {
-    cards.push(data.cards[i]);
-  };
-  startBtn.disabled = false;
-};
+let playerCurrency = 100;
 
 startBtn.disabled = true; // enables again after all cards are loaded
 getDecks(); // on page load
+
+/**
+ * FUNCTIONS
+ */
 
 const roundStart = () => {
   dealerCardBack();
@@ -60,15 +38,21 @@ const roundStart = () => {
 const dealerCardBack = () => {
   createDealerCardBack();
   dealerSecretCard.push(cards[0]);
-  putCardInUsedCardArray('dealer');
+  putCardInUsedCardArray("dealer");
 };
 
-const createDealerCardBack = () => {
-  let cardBackImg = document.createElement('img');
-  cardBackImg.classList.add('cardBackImg');
-  cardBackImg.setAttribute('id', 'cardBackImg');
-  cardBackImg.src = cardBack;
-  dealerHand.appendChild(cardBackImg);
+const playerCard = () => {
+  createCard(playerHand);
+  putCardInUsedCardArray("player");
+  if (!checkPlayerPoints()) {
+    if (playerPoints === 21) return roundCompleteInfo(true);
+    roundCompleteInfo(false);
+  }
+};
+
+const dealerCard = () => {
+  createCard(dealerHand);
+  putCardInUsedCardArray("dealer");
 };
 
 const putCardInUsedCardArray = (person) => {
@@ -78,50 +62,37 @@ const putCardInUsedCardArray = (person) => {
   calculateValue(person, cardValue);
 };
 
-const dealerCard = () => {
-  createCard(dealerHand);
-  putCardInUsedCardArray('dealer');
-};
-
 // person is dealer or player
 const createCard = (personHand) => {
-  let cardImg = document.createElement('img');
-  cardImg.classList.add('cardImg');
+  let cardImg = document.createElement("img");
+  cardImg.classList.add("cardImg");
   let img = cards[0].image;
   cardImg.src = img;
   personHand.appendChild(cardImg);
 };
 
-const playerCard = () => {
-  createCard(playerHand);
-  putCardInUsedCardArray('player');
-
-  if (!checkPlayerPoints()) {
-    if (playerPoints === 21) return roundCompleteInfo(true);
-    roundCompleteInfo(false);
-  };
-};
-
 // person is dealer or player
 const calculateValue = (person, value) => {
-  switch(value) {
+  switch (value) {
     case "ACE":
-      person === 'dealer' ? dealerPoints += 11 : playerPoints += 11;
-      person === 'dealer' ? dealerAce.push(1) :  playerAce.push(1);
+      person === "dealer" ? (dealerPoints += 11) : (playerPoints += 11);
+      person === "dealer" ? dealerAce.push(1) : playerAce.push(1);
       break;
     case "JACK":
-      person === 'dealer' ? dealerPoints += 10 : playerPoints += 10;
+      person === "dealer" ? (dealerPoints += 10) : (playerPoints += 10);
       break;
     case "QUEEN":
-      person === 'dealer' ? dealerPoints += 10 : playerPoints += 10;
+      person === "dealer" ? (dealerPoints += 10) : (playerPoints += 10);
       break;
     case "KING":
-      person === 'dealer' ? dealerPoints += 10 : playerPoints += 10;
+      person === "dealer" ? (dealerPoints += 10) : (playerPoints += 10);
       break;
     default:
-      person === 'dealer' ? dealerPoints += parseInt(value, 10) : playerPoints += parseInt(value, 10);
+      person === "dealer"
+        ? (dealerPoints += parseInt(value, 10))
+        : (playerPoints += parseInt(value, 10));
       break;
-  };
+  }
 };
 
 const checkPlayerPoints = () => {
@@ -132,9 +103,9 @@ const checkPlayerPoints = () => {
       playerPoints -= 10;
       if (playerPoints === 21) return false;
       return true;
-    };
+    }
     return false;
-  };
+  }
   return true;
 };
 
@@ -143,45 +114,37 @@ const checkDealerPoints = () => {
     if (dealerAce.length > 0) {
       dealerAce.pop();
       dealerPoints -= 10;
-    };
-  };
+    }
+  }
 };
 
 const roundCompleteInfo = (value) => {
   gameInfo.classList.remove("hide");
-  stopBtn.classList.add('hide');
+  stopBtn.classList.add("hide");
   if (value) {
-    showPoints('WINNER');
-    playerCurrency += 10;
-    currencyDiv.innerText = `Currency: ${playerCurrency}`;
-    showDealerSecretCard();
-    nextGame();
+    announceStatusToUser("WINNER", "+");
     return;
-  };
-  showPoints('You lost');
-  playerCurrency -= 10;
+  }
+  announceStatusToUser("You lost", "-");
+  nextGame();
+};
+
+const announceStatusToUser = (text, calc) => {
+  showPoints(text);
+  calc === "+" ? playerCurrency += 10 : playerCurrency -= 10;
   currencyDiv.innerText = `Currency: ${playerCurrency}`;
   showDealerSecretCard();
   nextGame();
 };
 
-const showPoints = (string) => {
+const showPoints = (text) => {
   dealerInfo.innerText = `Dealer: ${dealerPoints}`;
-  gameInfo.innerText = string;
+  gameInfo.innerText = text;
   playerInfo.innerText = `You: ${playerPoints}`;
 };
 
-const showDealerSecretCard = () => {
-  document.getElementById('cardBackImg').remove();
-  let cardImg = document.createElement('img');
-  cardImg.classList.add('cardImg');
-  let img = dealerSecretCard[0].image;
-  cardImg.src = img;
-  dealerHand.insertBefore(cardImg, dealerHand.firstChild);
-};
-
 const nextGame = () => {
-  startBtn.innerText = 'Go again';
+  startBtn.innerText = "Go again";
   resetScore();
   checkPlayerCurrency();
 };
@@ -194,7 +157,7 @@ const checkPlayerCurrency = () => {
 
 const gameOver = () => {
   startBtn.disabled = true;
-  startBtn.classList.add('hide');
+  startBtn.classList.add("hide");
   gameInfo.innerText += ` - GAME OVER - you played ${roundsPlayed} rounds`;
 };
 
@@ -207,41 +170,45 @@ const resetScore = () => {
 };
 
 const resetDivs = () => {
-  dealerHand.innerText = '';
-  playerHand.innerText = '';
+  dealerHand.innerText = "";
+  playerHand.innerText = "";
   gameInfo.classList.add("hide");
-  gameInfo.innerText = '';
-  dealerInfo.innerText = '';
-  playerInfo.innerText = '';
+  gameInfo.innerText = "";
+  dealerInfo.innerText = "";
+  playerInfo.innerText = "";
 };
 
-startBtn.addEventListener('click', (e) => {
+/**
+ * EVENT LISTENERS
+ */
+
+startBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  if (startBtn.innerText === 'Go again') {
+  if (startBtn.innerText === "Go again") {
     resetDivs();
-  };
-  rules.classList.add('hide');
-  startBtn.innerText = 'Draw card';
+  }
+  rules.classList.add("hide");
+  startBtn.innerText = "Draw card";
   stopBtn.classList.remove("hide");
   if (dealerPoints === 0) {
     roundsPlayed++;
     roundStart();
     return;
-  };
+  }
   if (checkPlayerPoints()) return playerCard();
 });
 
-restartBtn.addEventListener('click', (e) => {
+restartBtn.addEventListener("click", (e) => {
   location.reload();
 });
 
-stopBtn.addEventListener('click', (e) => {
+stopBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  stopBtn.classList.add('hide');
+  stopBtn.classList.add("hide");
   while (dealerPoints < 17) {
     dealerCard();
     checkDealerPoints();
-  };
+  }
   if (dealerPoints > 21) return roundCompleteInfo(true);
   if (dealerPoints === playerPoints) return roundCompleteInfo(true);
   if (dealerPoints > playerPoints) return roundCompleteInfo(false);
