@@ -1,6 +1,6 @@
 let currencyDiv = document.getElementById("currencyDiv");
 
-export let cards = [];
+export let fetchedCards = [];
 
 export const getDecks = async () => {
   const res = await fetch(
@@ -29,7 +29,7 @@ const getCards = async (id) => {
   );
   const data = await res.json();
   for (let i = 0; i < data.cards.length; i++) {
-    cards.push(data.cards[i]);
+    fetchedCards.push(data.cards[i]);
   }
   startBtn.disabled = false;
 };

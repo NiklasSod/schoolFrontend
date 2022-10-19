@@ -9,10 +9,12 @@ let dealerInfo = document.getElementById("dealerInfo");
 let playerInfo = document.getElementById("playerInfo");
 let currencyDiv = document.getElementById("currencyDiv");
 
-import { cards, getDecks } from "./javascript/fetch.js"; 
+import { fetchedCards, getDecks } from "./javascript/fetch.js"; 
 import { createDealerCardBack, showDealerSecretCard } from "./javascript/functions.js";
 
+const reshuffleNumber = 80;
 let usedCards = [];
+let cards = [];
 export let dealerSecretCard = [];
 let dealerPoints = 0;
 let dealerAce = [];
@@ -145,7 +147,20 @@ const showPoints = (text) => {
 const nextGame = () => {
   startBtn.innerText = "Go again";
   resetScore();
+  rechuffleCards();
   checkPlayerCurrency();
+};
+
+const rechuffleCards = () => {
+  if (cards.length < reshuffleNumber) {
+    for (let i = usedCards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [usedCards[i], usedCards[j]] = [usedCards[j], usedCards[i]];
+    }
+    usedCards.forEach(e => {
+      cards.push(e);
+    });
+  }
 };
 
 const checkPlayerCurrency = () => {
@@ -183,6 +198,10 @@ const resetDivs = () => {
 
 startBtn.addEventListener("click", (e) => {
   e.preventDefault();
+  console.log(cards)
+  if (cards.length === 0) {
+    cards = [...fetchedCards];
+  }
   if (startBtn.innerText === "Go again") {
     resetDivs();
   }
