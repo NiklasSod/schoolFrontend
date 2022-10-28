@@ -1,0 +1,5 @@
+Bakgrund: Anna driver en skönhetssalong som hon har startat upp via instagram. På senare tid har hennes kundkrets ökat väldigt mycket och det gör att hon behöver ha ett bättre bokningssystem. Idag tar Anna alla bokningar via instagram och hon har svårt att hålla reda på tider. Det innebär att kunder tappas bort och det blir ibland dubbelbokningar. Hon har även vid flertal tillfällen suttit och väntat på en kund utan att de har dykt upp för att senare inse att de försökt att avboka tiden på instagram, men kommit bort bland alla meddelanden. 
+
+Här kommer ni in i bilden. Ni jobbar på ett företag som skulle kunna leverera ett sådant system till Anna och ni behöver presentera en pitch på vad ni har för idé och vad det skulle kunna ge för nytta till henne och hennes kunder. Hur skulle man kunna utveckla Annas bokningssystem så det passar henne och hennes kunder? Kan vi vidareutveckla systemet för att hjälpa henne ytterligare? 
+
+Instruktioner: Gör en (eller fler) Value Proposition Canvas där Anna är kunden och vi är företaget. (Här kan ni antingen även lägga in kundernas jobs, pains & gains i samma proposition eller så gör ni en till Anna och en till Annas kunder)

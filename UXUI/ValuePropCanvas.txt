@@ -1,0 +1,45 @@
+ KUND - CUSTOMER JOBS:
+- Dubbelbokningar ska ej vara möjligt
+- Lediga tider ska gå att se och boka
+
+- Automatiserat
+--- kund (Anna) behöver inte längre fundera över bokningssystemet
+--- om en kund till kunden försöker boka via kund (anna) på instagram kan hon länka till bokningssidan
+
+- adminpanel
+--- för medelande ang tex ledighet på framsidan
+--- för att kunna avmarkera vissa kalenderdagar vid resa / sjukdom för att kunna bokas
+
+KUND - GAINS:
+- Kund sparar mycket tid
+- Kund minskar felbokningar
+- Kund kan ej bli dubbelbokad
+- Kund kan själv se kvickt hur framtiden ser ut
+
+KUND - PAINS:
+- Kund råkar dubbelboka tider
+- Kund missar avbokningar
+- Kund förlorar tid på manuellt arbete
+- Instagram mer komplicerat än det behöver vara
+
+-----
+
+FÖRETAG - PRODUCTS AND SERVICES:
+- Bokningssystem
+Företaget har ett bokningssystem som enkelt kan anpassas efter kundens krav.
+- Adminpanel
+Företaget lyssnar på kund och bygger en simpel adminpanel där kund kan välja bort kalenderdagar 
+samt skriva ut aktuell information till sina kunder.
+- Domain namn
+Företaget hjälper kund att få upp sidan på webben med kunds val av namn.
+
+FÖRETAG - GAIN CREATORS:
+Med ett bokningssystem som tar bort möjlighet för dubbelbokningar och med som enkelt går att kolla upp 
+dagens bokade kunder, underlättas för både kund och dennes kunder. 
+Det går fort att se lediga tider och blir lättare att välja precis det som passar.
+
+FÖRETAG - PAIN RELIEVERS:
+Med detta system kommer kund inte längre bli dubbelbokad och skapa irritation som försämmrar kunds företag via tex
+användares vilja att åter besöka.
+Med detta system minskar chansen att kund missar en avbokning och förlorar tid.
+Kund kan nu om viljan finns som bonus ha drop-in tider för personer som kommer förbi skönhetssallongen.
