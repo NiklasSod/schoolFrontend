@@ -9,7 +9,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "labb14": "nodemon ./backend/laborationer/script.js"
+    "labb14": "nodemon ./backend/labb14/script.js"
   },
   "type": "module",
   "repository": {
