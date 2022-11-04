@@ -19,15 +19,22 @@ const appendTodos = (allTodos) => {
     let todoDiv = document.createElement('div');
     todoDiv.setAttribute('id', todo.id);
     todoDiv.setAttribute('class', 'todoDiv');
-    todoDiv.addEventListener('click', function() {
+    todoDiv.addEventListener('click', function(e) {
+      if (e.target === todoDeleteBtn) return;
       updateTodo(todo.id);
-  });
+    });
     let todoHeader = document.createElement('h3');
     todoHeader.innerText = todo.header;
     let todoParagraph = document.createElement('p');
     todoParagraph.innerText = todo.text;
+    let todoDeleteBtn = document.createElement('button');
+    todoDeleteBtn.innerText = 'Delete';
+    todoDeleteBtn.addEventListener('click', function() {
+      deleteTodo(todo.id);
+    });
     todoDiv.appendChild(todoHeader);
     todoDiv.appendChild(todoParagraph);
+    todoDiv.appendChild(todoDeleteBtn);
     todosDiv.appendChild(todoDiv);
   })
 };
@@ -80,4 +87,15 @@ const updateColor = (todoId) => {
     updateColor.classList.remove('not__completed');
     updateColor.classList.add('completed');
   };
+};
+
+const deleteTodo = (todoId) => {
+  fetch('http://localhost:9999/api/todos', {
+    method: 'Delete',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({id: todoId})
+  });
+  location.reload();
 };
