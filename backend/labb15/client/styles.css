@@ -24,3 +24,11 @@ body {
   padding: 10px;
   border: 1px solid black;
 }
+
+.completed {
+  background-color: rgb(188, 254, 188);
+}
+
+.not__completed {
+  background-color: rgb(255, 220, 209);
+}

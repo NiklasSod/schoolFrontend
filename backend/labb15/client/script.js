@@ -9,6 +9,7 @@ const fetchTodos = async () => {
   });
   const data = await res.json();
   appendTodos(data);
+  todoCompleted(data);
 };
 
 fetchTodos();
@@ -16,7 +17,11 @@ fetchTodos();
 const appendTodos = (allTodos) => {
   allTodos.map((todo) => {
     let todoDiv = document.createElement('div');
+    todoDiv.setAttribute('id', todo.id);
     todoDiv.setAttribute('class', 'todoDiv');
+    todoDiv.addEventListener('click', function() {
+      updateTodo(todo.id);
+  });
     let todoHeader = document.createElement('h3');
     todoHeader.innerText = todo.header;
     let todoParagraph = document.createElement('p');
@@ -25,6 +30,15 @@ const appendTodos = (allTodos) => {
     todoDiv.appendChild(todoParagraph);
     todosDiv.appendChild(todoDiv);
   })
+};
+
+const todoCompleted = (data) => {
+  let count = todosDiv.childElementCount;
+  for (let i = 0; i < count; i++) {
+    if (data[i].id == todosDiv.children[i].id) {
+      data[i].completed ? todosDiv.children[i].classList.add("completed") : todosDiv.children[i].classList.add("not__completed");
+    }
+  };
 };
 
 addTodoBtn.addEventListener('click', (e) => {
@@ -39,8 +53,31 @@ addTodoBtn.addEventListener('click', (e) => {
     body: JSON.stringify({
       id: Math.random(),
       header: headerInput.value,
-      text: textInput.value
+      text: textInput.value,
+      completed: false 
     })
   });
   location.reload();
 });
+
+const updateTodo = (todoId) => {
+  fetch('http://localhost:9999/api/todos', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({id: todoId})
+  });
+  updateColor(todoId);
+};
+
+const updateColor = (todoId) => {
+  let updateColor = document.getElementById(todoId);
+  if (updateColor.classList.contains('completed')) {
+    updateColor.classList.remove('completed');
+    updateColor.classList.add('not__completed');
+  } else {
+    updateColor.classList.remove('not__completed');
+    updateColor.classList.add('completed');
+  };
+};

@@ -22,13 +22,29 @@ app.get('/api/todos', (req, res) => {
 app.post('/api/todos', (req, res) => {
   todos.push(req.body);
   const data = JSON.stringify(todos);
-  fs.writeFileSync(path.join(__dirname, '/todos.json'), data)
+  fs.writeFileSync(path.join(__dirname, '/todos.json'), data);
   res.end();
 });
 
-app.delete('/api/todos', (req, res) => {
+app.put('/api/todos', (req, res) => {
+  console.log(req.body.id)
+  updatedTodos = [];
+  for (let i = 0; i < todos.length; i++) {
+    if (todos[i].id === req.body.id) {
+      todos[i].completed = !todos[i].completed;
+      updatedTodos.push(todos[i]);
+    } else {
+      updatedTodos.push(todos[i]);
+    };
+  };
+  const data = JSON.stringify(updatedTodos);
+  fs.writeFileSync(path.join(__dirname, '/todos.json'), data);
   res.end();
 });
+
+// app.delete('/api/todos', (req, res) => {
+//   res.end();
+// });
 
 app.listen(PORT, () =>{
   console.log(`Server running on port: ${PORT}.`);
