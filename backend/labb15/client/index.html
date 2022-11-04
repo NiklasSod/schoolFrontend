@@ -10,6 +10,16 @@
 </head>
 <body>
   <h1>My todos</h1>
-  <div id="todosDiv"></div>
+  <form action="">
+    <label for="header">Header:</label>
+    <input id="headerInput" type="text" required name="header" placeholder="Enter your header">
+    <br>
+    <label for="text">Text:</label>
+    <input id="textInput" type="text" required name="text" placeholder="Enter your text">
+    <br>
+    <button id="addTodoBtn" class="addTodoBtn">Add todo</button>
+  </form>
+  <div id="todosDiv">
+  </div>
 </body>
 </html>

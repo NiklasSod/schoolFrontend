@@ -4,6 +4,21 @@
   padding: 0;
 }
 
+body {
+  width: 80%;
+  margin: auto;
+}
+
+.addTodoBtn {
+  font-size: 1.4em;
+  margin: 1em;
+  border: none;
+}
+
+.addTodoBtn:hover {
+  cursor: pointer;
+}
+
 .todoDiv {
   margin: 10px;
   padding: 10px;

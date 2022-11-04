@@ -13,7 +13,6 @@
     "labb14": "nodemon ./backend/labb14/script.js",
     "labb15": "nodemon ./backend/labb15/server.js"
   },
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NiklasSod/schoolFrontend.git"
