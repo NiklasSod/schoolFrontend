@@ -116,6 +116,12 @@ h1 {
   cursor: pointer;
 }
 
+.info {
+  text-align: center;
+  margin: 0.6em 0;
+  font-style: italic;
+}
+
 @media screen and (max-width: 740px) {
   .form__row > input {
     width: 14em;
