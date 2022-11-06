@@ -26,19 +26,28 @@ const appendTodos = (allTodos) => {
     todoDiv.setAttribute('class', 'todoDiv');
     todoDiv.addEventListener('click', function(e) {
       if (e.target === todoDeleteBtn) return;
-      updateTodo(todo.id);
+      if (e.target === updateTodoTextBtn) return;
+      updateTodoComplete(todo.id);
     });
     let todoHeader = document.createElement('h3');
     todoHeader.innerText = todo.header;
     let todoParagraph = document.createElement('p');
     todoParagraph.innerText = todo.text;
+    let updateTodoTextBtn = document.createElement('button');
+    updateTodoTextBtn.setAttribute('class', 'updateTodoTextBtn');
+    updateTodoTextBtn.innerText = 'Update';
+    updateTodoTextBtn.addEventListener('click', function() {
+      updateTodoText(todo.id);
+    });
     let todoDeleteBtn = document.createElement('button');
+    todoDeleteBtn.setAttribute('class', 'todoDeleteBtn');
     todoDeleteBtn.innerText = 'x';
     todoDeleteBtn.addEventListener('click', function() {
       deleteTodo(todo.id);
     });
     todoDiv.appendChild(todoHeader);
     todoDiv.appendChild(todoParagraph);
+    todoDiv.appendChild(updateTodoTextBtn);
     todoDiv.appendChild(todoDeleteBtn);
     todosDiv.appendChild(todoDiv);
   })
@@ -90,7 +99,7 @@ addTodoBtn.addEventListener('click', (e) => {
   location.reload();
 });
 
-const updateTodo = (todoId) => {
+const updateTodoComplete = (todoId) => {
   fetch('http://localhost:9999/api/todos', {
     method: 'PUT',
     headers: {
@@ -99,6 +108,10 @@ const updateTodo = (todoId) => {
     body: JSON.stringify({id: todoId})
   });
   updateColor(todoId);
+};
+
+const updateTodoText = (todoId) => {
+  console.log(todoId);
 };
 
 const updateColor = (todoId) => {

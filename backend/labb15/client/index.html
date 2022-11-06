@@ -11,15 +11,19 @@
 <body>
   <h1>LIST OF TODOS</h1>
   <form action="">
-    <div class="form__row">
-      <label for="header">Header:</label>
-      <input id="headerInput" type="text" required name="header" placeholder="Enter your header">
+    <div class="form-group">
+      <div>
+        <div class="form__row">
+          <label for="header">Header:</label>
+          <input id="headerInput" type="text" required name="header" placeholder="Enter your header">
+        </div>
+        <div class="form__row">
+          <label for="text">Text:</label>
+          <input id="textInput" type="text" required name="text" placeholder="Enter your text">
+        </div>
+      </div>
+      <button id="addTodoBtn" class="addTodoBtn">Add todo</button>
     </div>
-    <div class="form__row">
-      <label for="text">Text:</label>
-      <input id="textInput" type="text" required name="text" placeholder="Enter your text">
-    </div>
-    <button id="addTodoBtn" class="addTodoBtn">Add todo</button>
   </form>
   <div id="todosDiv">
   </div>

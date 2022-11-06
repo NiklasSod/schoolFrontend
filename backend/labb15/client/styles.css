@@ -1,3 +1,8 @@
+:root {
+  --blueColor: rgb(28, 151, 252);
+  --redColor: rgb(254, 16, 16);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -16,7 +21,7 @@ h1 {
 }
 
 .addTodoBtn {
-  background-color: rgb(28, 151, 252);
+  background-color: var(--blueColor);
   color: white;
   font-size: 1.4em;
   border: none;
@@ -25,8 +30,24 @@ h1 {
   padding: 0.2em;
 }
 
+.form-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 4em;
+}
+
 .form__row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1em;
   margin: 0.2em;
+}
+
+.form__row > input {
+  width: 20em;
 }
 
 .addTodoBtn:hover {
@@ -38,13 +59,27 @@ h1 {
   margin: 10px;
   padding: 10px;
   border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.todoDiv > button {
+.todoDeleteBtn {
   position: absolute;
   right: 10px;
   top: 10px;
-  background-color: rgb(254, 16, 16);
+  background-color: var(--redColor);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.4em 0.6em;
+}
+
+.updateTodoTextBtn {
+  position: absolute;
+  right: 40px;
+  top: 10px;
+  background-color: var(--blueColor);
   color: white;
   border: none;
   border-radius: 5px;
@@ -70,7 +105,7 @@ h1 {
 }
 .paginationDiv > button {
   flex-grow: 1;
-  background-color: rgb(28, 151, 252);
+  background-color: var(--blueColor);
   color: white;
   font-size: 1.4em;
   border: none;
@@ -79,4 +114,29 @@ h1 {
 
 .paginationDiv > button:hover {
   cursor: pointer;
+}
+
+@media screen and (max-width: 740px) {
+  .form__row > input {
+    width: 14em;
+  }
+
+  .todoDeleteBtn {
+    top: 2px;
+    right: 2px;
+  }
+  .updateTodoTextBtn {
+    position: relative;
+    top: auto;
+    right: auto;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin: 0.2em;
+    gap: 0;
+  }
 }
