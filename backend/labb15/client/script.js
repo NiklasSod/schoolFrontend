@@ -33,7 +33,7 @@ const appendTodos = (allTodos) => {
     let todoParagraph = document.createElement('p');
     todoParagraph.innerText = todo.text;
     let todoDeleteBtn = document.createElement('button');
-    todoDeleteBtn.innerText = 'Delete';
+    todoDeleteBtn.innerText = 'x';
     todoDeleteBtn.addEventListener('click', function() {
       deleteTodo(todo.id);
     });

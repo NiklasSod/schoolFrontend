@@ -9,19 +9,21 @@
   <title>Todo</title>
 </head>
 <body>
-  <h1>My todos</h1>
+  <h1>LIST OF TODOS</h1>
   <form action="">
-    <label for="header">Header:</label>
-    <input id="headerInput" type="text" required name="header" placeholder="Enter your header">
-    <br>
-    <label for="text">Text:</label>
-    <input id="textInput" type="text" required name="text" placeholder="Enter your text">
-    <br>
+    <div class="form__row">
+      <label for="header">Header:</label>
+      <input id="headerInput" type="text" required name="header" placeholder="Enter your header">
+    </div>
+    <div class="form__row">
+      <label for="text">Text:</label>
+      <input id="textInput" type="text" required name="text" placeholder="Enter your text">
+    </div>
     <button id="addTodoBtn" class="addTodoBtn">Add todo</button>
   </form>
   <div id="todosDiv">
   </div>
-  <div id="paginationDiv">
+  <div id="paginationDiv" class="paginationDiv">
   </div>
 </body>
 </html>

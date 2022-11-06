@@ -5,14 +5,28 @@
 }
 
 body {
-  width: 80%;
+  width: 70%;
   margin: auto;
+  background-color: rgb(221, 242, 254);
+}
+
+h1 {
+  text-align: center;
+  margin: 0.5em;
 }
 
 .addTodoBtn {
+  background-color: rgb(28, 151, 252);
+  color: white;
   font-size: 1.4em;
-  margin: 1em;
   border: none;
+  border-radius: 1em;
+  margin: 1em 0;
+  padding: 0.2em;
+}
+
+.form__row {
+  margin: 0.2em;
 }
 
 .addTodoBtn:hover {
@@ -20,9 +34,25 @@ body {
 }
 
 .todoDiv {
+  position: relative;
   margin: 10px;
   padding: 10px;
   border: 1px solid black;
+}
+
+.todoDiv > button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: rgb(254, 16, 16);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.4em 0.6em;
+}
+
+.todoDiv > button:hover {
+  cursor: pointer;
 }
 
 .completed {
@@ -31,4 +61,22 @@ body {
 
 .not__completed {
   background-color: rgb(255, 220, 209);
+}
+
+.paginationDiv {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+.paginationDiv > button {
+  flex-grow: 1;
+  background-color: rgb(28, 151, 252);
+  color: white;
+  font-size: 1.4em;
+  border: none;
+  border-radius: 1em;
+}
+
+.paginationDiv > button:hover {
+  cursor: pointer;
 }
