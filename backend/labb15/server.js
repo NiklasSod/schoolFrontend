@@ -11,9 +11,16 @@ const PORT = process.env.PORT || 5050;
 app.use(express.static(path.join(__dirname, 'client')));
 app.use(express.json());
 
-app.get('/api/todos', (req, res) => {
+app.post('/api/getTodos', (req, res) => {
+  const number = req.body.page * 5;
   try {
-    res.send(todos);
+    let fiveTodos = [];
+    for (let i = number; i < number + 5; i++) {
+      if (todos[i]) {
+        fiveTodos.push(todos[i]);
+      };
+    }
+    res.send({todos: fiveTodos, length: todos.length});
   } catch (err) {
     console.log(err);
   };
@@ -44,9 +51,7 @@ app.put('/api/todos', (req, res) => {
 app.delete('/api/todos', (req, res) => {
   updatedTodos = [];
   for (let i = 0; i < todos.length; i++) {
-    if (todos[i].id === req.body.id) {
-      // lalala do nothing
-    } else {
+    if (todos[i].id !== req.body.id) {
       updatedTodos.push(todos[i]);
     };
   };

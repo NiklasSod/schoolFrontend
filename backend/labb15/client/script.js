@@ -2,19 +2,24 @@ let todosDiv = document.getElementById('todosDiv');
 let addTodoBtn = document.getElementById('addTodoBtn');
 let headerInput = document.getElementById('headerInput');
 let textInput = document.getElementById('textInput');
+let paginationDiv = document.getElementById('paginationDiv');
 
-const fetchTodos = async () => {
-  const res = await fetch('http://localhost:9999/api/todos', {
-    method: 'GET'
+const fetchTodos = async (page = 0) => {
+  const res = await fetch('http://localhost:9999/api/getTodos', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({page})
   });
   const data = await res.json();
-  appendTodos(data);
-  todoCompleted(data);
+  appendTodos(data.todos);
+  todoCompleted(data.todos);
+  pagination(data.length);
 };
 
-fetchTodos();
-
 const appendTodos = (allTodos) => {
+  todosDiv.innerText = '';
   allTodos.map((todo) => {
     let todoDiv = document.createElement('div');
     todoDiv.setAttribute('id', todo.id);
@@ -48,10 +53,27 @@ const todoCompleted = (data) => {
   };
 };
 
+const pagination = (todoAmount) => {
+  if (todoAmount <= 5) return;
+  paginationDiv.innerText = '';
+  for (let i = 0; i < todoAmount; i += 5) {
+    if (i > 100) return;
+    let pageNumber = document.createElement('button');
+    pageNumber.addEventListener('click', (e) => {
+      e.preventDefault();
+      fetchTodos(Math.floor(i/5));
+    });
+    i === 0 ? pageNumber.innerText = 1 : pageNumber.innerText = 1 + (i / 5);
+    paginationDiv.appendChild(pageNumber);
+  };
+};
+
 addTodoBtn.addEventListener('click', (e) => {
+  e.preventDefault();
   if (headerInput.value.trim() === '' || textInput.value.trim() === '') {
     return;
   };
+  const date = Date.now();
   fetch('http://localhost:9999/api/todos', {
     method: 'POST',
     headers: {
@@ -59,6 +81,7 @@ addTodoBtn.addEventListener('click', (e) => {
     },
     body: JSON.stringify({
       id: Math.random(),
+      createdAt: date,
       header: headerInput.value,
       text: textInput.value,
       completed: false 
@@ -97,5 +120,9 @@ const deleteTodo = (todoId) => {
     },
     body: JSON.stringify({id: todoId})
   });
-  location.reload();
+  setTimeout(() => {
+    location.reload();
+  }, 100);
 };
+
+fetchTodos();
