@@ -10,8 +10,10 @@ let updateTodoBtn = document.getElementById('updateTodoBtn');
 let cancelUpdateTodoBtn = document.getElementById('cancelUpdateTodoBtn');
 let radioBtnFalse = document.getElementById('not_complete');
 
+// used to remember id to popup-modal and edit todo
 let updateId = "";
 
+// remade GET to POST so I could add page and fetch only 5 todos instead of all
 const fetchTodos = async (page = 0) => {
   const res = await fetch('http://localhost:9999/api/getTodos', {
     method: 'POST',
@@ -26,6 +28,7 @@ const fetchTodos = async (page = 0) => {
   pagination(data.length);
 };
 
+// creates alot but limit of 5 divs with elements and buttons with listeners
 const appendTodos = (allTodos) => {
   todosDiv.innerText = '';
   allTodos.map((todo) => {
@@ -62,6 +65,7 @@ const appendTodos = (allTodos) => {
   })
 };
 
+// creates a background to todo showing green - completed or red
 const todoCompleted = (data) => {
   let count = todosDiv.childElementCount;
   for (let i = 0; i < count; i++) {
@@ -71,6 +75,7 @@ const todoCompleted = (data) => {
   };
 };
 
+// if more than 5 todos, create button to another page
 const pagination = (todoAmount) => {
   if (todoAmount <= 5) return;
   paginationDiv.innerText = '';
@@ -128,11 +133,14 @@ updateTodoBtn.addEventListener('click', (e) => {
   radioBtnFalse.checked ? console.log('false') : console.log('true')
 });
 
+// close popup-modal
 cancelUpdateTodoBtn.addEventListener('click', (e) => {
   e.preventDefault();
   popupDiv.classList.add('hidden');
 });
 
+// update div-color on frontend, no need to refresh page
+// another function does update server at the same time
 const updateColor = (todoId) => {
   let updateColor = document.getElementById(todoId);
   if (updateColor.classList.contains('completed')) {

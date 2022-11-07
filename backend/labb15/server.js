@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 5050;
 app.use(express.static(path.join(__dirname, 'client')));
 app.use(express.json());
 
+// will fetch 5 todos
 app.post('/api/getTodos', (req, res) => {
   const number = req.body.page * 5;
   try {
@@ -33,6 +34,7 @@ app.post('/api/todos', (req, res) => {
   res.end();
 });
 
+// update a todos complete status
 app.put('/api/todos', (req, res) => {
   updatedTodos = [];
   for (let i = 0; i < todos.length; i++) {
