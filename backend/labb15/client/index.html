@@ -30,5 +30,33 @@
   <div id="paginationDiv" class="paginationDiv">
   </div>
   <p class="info">Tips: Press the color (green / red) to quickly update complete status on a todo</p>
+  <!-- POPUP -->
+  <div class="popup hidden" id="popupDiv">
+    <form action="">
+      <div class="form-group">
+        <div>
+          <div class="form__row">
+            <label for="header">Header:</label>
+            <input id="popupHeaderInput" type="text" required name="header" placeholder="Enter your header">
+          </div>
+          <div class="form__row">
+            <label for="text">Text:</label>
+            <input id="popupTextInput" type="text" required name="text" placeholder="Enter your text">
+          </div>
+          <div class="radio_btn">
+            <p>Completed:</p>
+            <input type="radio" id="not_complete" name="todo_complete" value="not_complete" checked>
+            <label for="not_complete">False</label>
+            <input type="radio" id="complete" name="todo_complete" value="complete">
+            <label for="complete">True</label>
+          </div>
+        </div>
+        <div class="btn-group">
+          <button id="updateTodoBtn" class="addTodoBtn">Update</button>
+          <button id="cancelUpdateTodoBtn" class="addTodoBtn">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </body>
 </html>

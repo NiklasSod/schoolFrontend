@@ -3,6 +3,14 @@ let addTodoBtn = document.getElementById('addTodoBtn');
 let headerInput = document.getElementById('headerInput');
 let textInput = document.getElementById('textInput');
 let paginationDiv = document.getElementById('paginationDiv');
+let popupDiv = document.getElementById('popupDiv');
+let popupHeaderInput = document.getElementById('popupHeaderInput');
+let popupTextInput = document.getElementById('popupTextInput');
+let updateTodoBtn = document.getElementById('updateTodoBtn');
+let cancelUpdateTodoBtn = document.getElementById('cancelUpdateTodoBtn');
+let radioBtnFalse = document.getElementById('not_complete');
+
+let updateId = "";
 
 const fetchTodos = async (page = 0) => {
   const res = await fetch('http://localhost:9999/api/getTodos', {
@@ -37,7 +45,8 @@ const appendTodos = (allTodos) => {
     updateTodoTextBtn.setAttribute('class', 'updateTodoTextBtn');
     updateTodoTextBtn.innerText = 'Update';
     updateTodoTextBtn.addEventListener('click', function() {
-      updateTodoText(todo.id);
+      popupDiv.classList.remove('hidden');
+      updateId = todo.id;
     });
     let todoDeleteBtn = document.createElement('button');
     todoDeleteBtn.setAttribute('class', 'todoDeleteBtn');
@@ -110,9 +119,19 @@ const updateTodoComplete = (todoId) => {
   updateColor(todoId);
 };
 
-const updateTodoText = (todoId) => {
-  console.log(todoId);
-};
+updateTodoBtn.addEventListener('click', (e) => {
+  // TODO use info below, create fetch call and add new API to update a todo!
+  e.preventDefault();
+  console.log(popupHeaderInput.value)
+  console.log(popupTextInput.value)
+  console.log(updateId)
+  radioBtnFalse.checked ? console.log('false') : console.log('true')
+});
+
+cancelUpdateTodoBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  popupDiv.classList.add('hidden');
+});
 
 const updateColor = (todoId) => {
   let updateColor = document.getElementById(todoId);
