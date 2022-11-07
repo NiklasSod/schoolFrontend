@@ -50,6 +50,24 @@ app.put('/api/todos', (req, res) => {
   res.end();
 });
 
+// update a todo text / header / complete
+app.put('/api/bigUpdateTodo', (req, res) => {
+  updatedTodos = [];
+  for (let i = 0; i < todos.length; i++) {
+    if (todos[i].id === req.body.id) {
+      let todoToUpdate = [];
+      todoToUpdate.push(req.body);
+      todoToUpdate[0].createdAt = todos[i].createdAt;
+      updatedTodos.push(todoToUpdate[0]);
+    } else {
+      updatedTodos.push(todos[i]);
+    };
+  };
+  const data = JSON.stringify(updatedTodos);
+  fs.writeFileSync(path.join(__dirname, '/todos.json'), data);
+  res.end();
+});
+
 app.delete('/api/todos', (req, res) => {
   updatedTodos = [];
   for (let i = 0; i < todos.length; i++) {

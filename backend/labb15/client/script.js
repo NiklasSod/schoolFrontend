@@ -125,12 +125,25 @@ const updateTodoComplete = (todoId) => {
 };
 
 updateTodoBtn.addEventListener('click', (e) => {
-  // TODO use info below, create fetch call and add new API to update a todo!
   e.preventDefault();
-  console.log(popupHeaderInput.value)
-  console.log(popupTextInput.value)
-  console.log(updateId)
-  radioBtnFalse.checked ? console.log('false') : console.log('true')
+  if (popupHeaderInput.value.trim() === '' || popupTextInput.value.trim() === '') {
+    return;
+  };
+  const date = Date.now();
+  fetch('http://localhost:9999/api/bigUpdateTodo', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      id: updateId,
+      createdAt: date,
+      header: popupHeaderInput.value,
+      text: popupTextInput.value,
+      completed: radioBtnFalse.checked ? false : true
+    })
+  });
+  location.reload();
 });
 
 // close popup-modal
