@@ -9,8 +9,9 @@ let popupTextInput = document.getElementById('popupTextInput');
 let updateTodoBtn = document.getElementById('updateTodoBtn');
 let cancelUpdateTodoBtn = document.getElementById('cancelUpdateTodoBtn');
 let radioBtnFalse = document.getElementById('not_complete');
+let radioBtnTrue = document.getElementById('complete');
 
-// used to remember id to popup-modal and edit todo
+// used to remember stuff to popup-modal and edit todo
 let updateId = "";
 
 // remade GET to POST so I could add page and fetch only 5 todos instead of all
@@ -50,6 +51,9 @@ const appendTodos = (allTodos) => {
     updateTodoTextBtn.addEventListener('click', function() {
       popupDiv.classList.remove('hidden');
       updateId = todo.id;
+      popupHeaderInput.defaultValue = todo.header;
+      popupTextInput.defaultValue = todo.text;
+      todo.completed === true ? radioBtnTrue.checked = true : radioBtnFalse.checked = true;
     });
     let todoDeleteBtn = document.createElement('button');
     todoDeleteBtn.setAttribute('class', 'todoDeleteBtn');
