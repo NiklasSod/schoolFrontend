@@ -10,7 +10,7 @@ const dishSchema = mongoose.Schema({
     required: true,
   }
 }, {
-  timeStamps: true
+  timestamps: true
 });
 
 module.exports = mongoose.model('Dish', dishSchema);

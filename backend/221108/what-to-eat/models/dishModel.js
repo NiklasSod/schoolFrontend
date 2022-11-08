@@ -43,6 +43,26 @@ exports.createNewDish = (req, res) => {
   });
 };
 
+exports.getRandomDishes = (req, res) => {
+  let amount = req.query.amount || 7;
+  Dish.find({}, (err, data) => {
+    if (err) {
+      return res.status(500).json({
+        message: 'Something went wrong trying to get the dishes',
+        err: err.message
+      });
+    };
+    if (!data) {
+      return res.status(404).json({
+        message: 'Could not find that dish'
+      });
+    };
+    const randomDishes = data.sort(() => 0.5 - Math.random());
+    const amountDishes = randomDishes.slice(0, amount);
+    res.status(200).json(amountDishes);
+  });
+};
+
 exports.updateDish = (req, res) => {
   Dish.findOneAndUpdate({ _id: req.params.id }, req.body, (err, data) => {
     if (err) {
