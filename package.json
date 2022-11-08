@@ -3,7 +3,8 @@
     "bootstrap": "^5.2.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^6.7.2"
   },
   "name": "schoolfrontend",
   "version": "1.0.0",
@@ -11,7 +12,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "labb14": "nodemon ./backend/labb14/script.js",
-    "labb15": "nodemon ./backend/labb15/server.js"
+    "labb15": "nodemon ./backend/labb15/server.js",
+    "lektion3": "nodemon ./backend/221108/what-to-eat/server.js"
   },
   "repository": {
     "type": "git",
