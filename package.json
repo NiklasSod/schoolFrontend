@@ -1,9 +1,11 @@
 {
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^5.2.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.2",
     "swagger-jsdoc": "^6.2.5",
     "swagger-ui-express": "^4.6.0"
@@ -15,7 +17,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "labb14": "nodemon ./backend/labb14/script.js",
     "labb15": "nodemon ./backend/labb15/server.js",
-    "lektion3": "nodemon ./backend/221108/what-to-eat/server.js"
+    "lektion3": "nodemon ./backend/221108/what-to-eat/server.js",
+    "lektion4": "nodemon ./backend/221110/todos/client/server.js"
   },
   "repository": {
     "type": "git",
